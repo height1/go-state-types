@@ -72,8 +72,9 @@ const (
 	RegisteredSealProof_StackedDrg2KiBV1   = RegisteredSealProof(0)
 	RegisteredSealProof_StackedDrg8MiBV1   = RegisteredSealProof(1)
 	RegisteredSealProof_StackedDrg512MiBV1 = RegisteredSealProof(2)
-	RegisteredSealProof_StackedDrg32GiBV1  = RegisteredSealProof(3)
-	RegisteredSealProof_StackedDrg64GiBV1  = RegisteredSealProof(4)
+	RegisteredSealProof_StackedDrg8GiBV1   = RegisteredSealProof(3)
+	RegisteredSealProof_StackedDrg32GiBV1  = RegisteredSealProof(4)
+	RegisteredSealProof_StackedDrg64GiBV1  = RegisteredSealProof(5)
 )
 
 type RegisteredPoStProof int64
@@ -82,13 +83,15 @@ const (
 	RegisteredPoStProof_StackedDrgWinning2KiBV1   = RegisteredPoStProof(0)
 	RegisteredPoStProof_StackedDrgWinning8MiBV1   = RegisteredPoStProof(1)
 	RegisteredPoStProof_StackedDrgWinning512MiBV1 = RegisteredPoStProof(2)
-	RegisteredPoStProof_StackedDrgWinning32GiBV1  = RegisteredPoStProof(3)
-	RegisteredPoStProof_StackedDrgWinning64GiBV1  = RegisteredPoStProof(4)
-	RegisteredPoStProof_StackedDrgWindow2KiBV1    = RegisteredPoStProof(5)
-	RegisteredPoStProof_StackedDrgWindow8MiBV1    = RegisteredPoStProof(6)
-	RegisteredPoStProof_StackedDrgWindow512MiBV1  = RegisteredPoStProof(7)
-	RegisteredPoStProof_StackedDrgWindow32GiBV1   = RegisteredPoStProof(8)
-	RegisteredPoStProof_StackedDrgWindow64GiBV1   = RegisteredPoStProof(9)
+	RegisteredPoStProof_StackedDrgWinning8GiBV1   = RegisteredPoStProof(3)
+	RegisteredPoStProof_StackedDrgWinning32GiBV1  = RegisteredPoStProof(4)
+	RegisteredPoStProof_StackedDrgWinning64GiBV1  = RegisteredPoStProof(5)
+	RegisteredPoStProof_StackedDrgWindow2KiBV1    = RegisteredPoStProof(6)
+	RegisteredPoStProof_StackedDrgWindow8MiBV1    = RegisteredPoStProof(7)
+	RegisteredPoStProof_StackedDrgWindow512MiBV1  = RegisteredPoStProof(8)
+	RegisteredPoStProof_StackedDrgWindow8GiBV1    = RegisteredPoStProof(9)
+	RegisteredPoStProof_StackedDrgWindow32GiBV1   = RegisteredPoStProof(10)
+	RegisteredPoStProof_StackedDrgWindow64GiBV1   = RegisteredPoStProof(11)
 )
 
 // Metadata about a seal proof type.
@@ -110,9 +113,14 @@ var SealProofInfos = map[RegisteredSealProof]*SealProofInfo{
 		WindowPoStProof:            RegisteredPoStProof_StackedDrgWindow8MiBV1,
 	},
 	RegisteredSealProof_StackedDrg512MiBV1: {
-		SectorSize:                 512 << 20,
-		WinningPoStProof:           RegisteredPoStProof_StackedDrgWinning512MiBV1,
-		WindowPoStProof:            RegisteredPoStProof_StackedDrgWindow512MiBV1,
+		SectorSize:       512 << 20,
+		WinningPoStProof: RegisteredPoStProof_StackedDrgWinning512MiBV1,
+		WindowPoStProof:  RegisteredPoStProof_StackedDrgWindow512MiBV1,
+	},
+	RegisteredSealProof_StackedDrg8GiBV1: {
+		SectorSize:       8 << 30,
+		WinningPoStProof: RegisteredPoStProof_StackedDrgWinning8GiBV1,
+		WindowPoStProof:  RegisteredPoStProof_StackedDrgWindow8GiBV1,
 	},
 	RegisteredSealProof_StackedDrg32GiBV1: {
 		SectorSize:                 32 << 30,
@@ -161,6 +169,8 @@ var PoStSealProofTypes = map[RegisteredPoStProof]RegisteredSealProof{
 	RegisteredPoStProof_StackedDrgWindow8MiBV1:    RegisteredSealProof_StackedDrg8MiBV1,
 	RegisteredPoStProof_StackedDrgWinning512MiBV1: RegisteredSealProof_StackedDrg512MiBV1,
 	RegisteredPoStProof_StackedDrgWindow512MiBV1:  RegisteredSealProof_StackedDrg512MiBV1,
+	RegisteredPoStProof_StackedDrgWinning8GiBV1:   RegisteredSealProof_StackedDrg8GiBV1,
+	RegisteredPoStProof_StackedDrgWindow8GiBV1:    RegisteredSealProof_StackedDrg8GiBV1,
 	RegisteredPoStProof_StackedDrgWinning32GiBV1:  RegisteredSealProof_StackedDrg32GiBV1,
 	RegisteredPoStProof_StackedDrgWindow32GiBV1:   RegisteredSealProof_StackedDrg32GiBV1,
 	RegisteredPoStProof_StackedDrgWinning64GiBV1:  RegisteredSealProof_StackedDrg64GiBV1,
